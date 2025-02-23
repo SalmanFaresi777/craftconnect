@@ -1,0 +1,85 @@
+.search-input {
+  border-radius: 20px;
+  padding: 10px 20px;
+  border: 2px solid #8B4513 !important; /* Warm brown color */
+  transition: all 0.3s ease;
+  background-color: #FFF8DC !important; /* Cornsilk background */
+  color: #8B4513 !important;
+}
+
+.search-input::placeholder {
+  color: #DEB887 !important; /* Burlywood color for placeholder */
+}
+
+.search-input:focus {
+  box-shadow: 0 0 0 0.25rem rgba(139, 69, 19, 0.25) !important;
+  border-color: #8B4513 !important;
+  background-color: #FFFFFF !important;
+}
+
+.category-select {
+  border-radius: 20px;
+  padding: 10px 20px;
+  border: 2px solid #8B4513 !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #FFF8DC !important;
+  color: #8B4513 !important;
+}
+
+.category-select:focus {
+  box-shadow: 0 0 0 0.25rem rgba(139, 69, 19, 0.25) !important;
+  border-color: #8B4513 !important;
+  background-color: #FFFFFF !important;
+}
+
+.min-vh-100 {
+  min-height: 100vh;
+  background-color: #FAEBD7 !important; /* Antique white background */
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+/* Card styling */
+.card {
+  border: none !important;
+  border-radius: 15px !important;
+  box-shadow: 0 4px 12px rgba(139, 69, 19, 0.1) !important;
+  transition: all 0.3s ease !important;
+  background-color: #FFF8DC !important;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(139, 69, 19, 0.2) !important;
+}
+
+/* Alert styling */
+.alert-danger {
+  background-color: #FFE4E1 !important; /* Misty rose background */
+  border-color: #CD5C5C !important; /* Indian red border */
+  color: #8B0000 !important; /* Dark red text */
+}
+
+/* Spinner styling */
+.spinner-border {
+  color: #8B4513 !important; /* Warm brown color */
+}
+
+/* Container spacing */
+.container {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* Text colors */
+h3 {
+  color: #8B4513 !important; /* Warm brown color */
+}
+
+/* Add padding to account for fixed navbar */
+.flex-grow-1 {
+  padding-top: 76px; /* Adjust this value based on your navbar height */
+}

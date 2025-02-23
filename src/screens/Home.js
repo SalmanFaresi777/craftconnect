@@ -1,197 +1,126 @@
-import React from 'react'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
-import Card from '../components/Card'
-import Carausel from '../components/Carausel'
+import React, { useEffect, useState } from 'react';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import Card from '../components/Card';
+import MyOrders from './MyOrders';
+import Carousel from '../components/Carausel';
+import { Container, Row, Col, Form, Alert, Spinner } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Home() {
-  // Sample skill data
-  const skillCards = [
-    {
-      skill: "Piano",
-      category: "Music",
-      tutor: "John Smith",
-      experience: "20+ years",
-      rating: 4.9,
-      reviews: 45,
-      price: 50,
-      image: "https://images.unsplash.com/photo-1520523839897-bd0b52f945a0",
-      level: "All Levels",
-      schedule: "Flexible"
-    },
-    {
-      skill: "Oil Painting",
-      category: "Arts",
-      tutor: "Maria Garcia",
-      experience: "15+ years",
-      rating: 4.8,
-      reviews: 38,
-      price: 45,
-      image: "https://images.unsplash.com/photo-1579762715118-a6f1d4b934f1",
-      level: "Beginner",
-      schedule: "Weekends"
-    },
-    {
-      skill: "Guitar",
-      category: "Music",
-      tutor: "David Chen",
-      experience: "12+ years",
-      rating: 4.7,
-      reviews: 29,
-      price: 40,
-      image: "https://images.unsplash.com/photo-1510915361894-db8b60106cb1",
-      level: "Intermediate",
-      schedule: "Evenings"
-    },
-    {
-      skill: "Photography",
-      category: "Photography",
-      tutor: "Emma Wilson",
-      experience: "10+ years",
-      rating: 4.9,
-      reviews: 42,
-      price: 55,
-      image: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d",
-      level: "All Levels",
-      schedule: "Weekends"
-    },
-    {
-      skill: "Pottery",
-      category: "Crafts",
-      tutor: "Michael Brown",
-      experience: "18+ years",
-      rating: 4.8,
-      reviews: 35,
-      price: 60,
-      image: "https://images.unsplash.com/photo-1493106641515-6b5631de4bb9",
-      level: "All Levels",
-      schedule: "Flexible"
-    },
-    {
-      skill: "Digital Art",
-      category: "Arts",
-      tutor: "Sophie Lee",
-      experience: "8+ years",
-      rating: 4.7,
-      reviews: 31,
-      price: 45,
-      image: "/designer_1.jpg",
-      level: "Beginner",
-      schedule: "Weekdays"
-    },
-    {
-      skill: "Violin",
-      category: "Music",
-      tutor: "Robert Taylor",
-      experience: "25+ years",
-      rating: 4.9,
-      reviews: 50,
-      price: 65,
-      image: "https://images.unsplash.com/photo-1612225330812-01a9c6b355ec",
-      level: "All Levels",
-      schedule: "Flexible"
-    },
-    {
-      skill: "Cooking",
-      category: "Cooking",
-      tutor: "Lisa Martinez",
-      experience: "14+ years",
-      rating: 4.8,
-      reviews: 44,
-      price: 50,
-      image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f",
-      level: "Beginner",
-      schedule: "Evenings"
-    }
-  ];
+  const [search, setSearch] = useState('');
+  const [foodCat, setFoodCat] = useState([]);
+  const [foodItem, setFoodItem] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState('all');
 
-  const categoryIcons = {
-    Music: 'bi-music-note',
-    Arts: 'bi-palette',
-    Crafts: 'bi-palette',
-    Photography: 'bi-camera',
-    Cooking: 'bi-utensils',
-    Technology: 'bi-code',
-    Fitness: 'bi-dumbbell',
-    Languages: 'bi-translate'
+  const loadData = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const response = await fetch("http://localhost:5000/api/foodData", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+
+      if (!result.success) {
+        throw new Error(result.error || 'Failed to load data');
+      }
+
+      setFoodItem(result.data[0] || []);
+      setFoodCat(result.data[1] || []);
+    } catch (error) {
+      console.error("Loading data failed:", error);
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const filteredItems = foodItem.filter(item => {
+    const matchesSearch = item.name.toLowerCase().includes(search.toLowerCase());
+    const matchesCategory = selectedCategory === 'all' || item.CategoryName === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
+
+  if (loading) {
+    return (
+      <div className="d-flex justify-content-center align-items-center min-vh-100">
+        <Spinner animation="border" variant="success" />
+      </div>
+    );
+  }
+
   return (
-    <div className="min-vh-100 d-flex flex-column">
+    <div className="d-flex flex-column min-vh-100">
       <Navbar />
-      <Carausel />
+      <div className="flex-grow-1">
+        <Carousel />
+        
+        <Container className="my-4">
+          <Row className="g-4">
+            <Col md={8}>
+              <Form.Control
+                type="search"
+                placeholder="Search for crafts..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="search-input"
+              />
+            </Col>
+            <Col md={4}>
+              <Form.Select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="category-select"
+              >
+                <option value="all">All Categories</option>
+                {foodCat.map(category => (
+                  <option key={category._id} value={category.CategoryName}>
+                    {category.CategoryName}
+                  </option>
+                ))}
+              </Form.Select>
+            </Col>
+          </Row>
 
-      {/* Featured Skills Section */}
-      <div className="container-fluid bg-light py-5">
-        <div className="container">
-          <div className="row mb-4">
-            <div className="col-lg-8">
-              <h2 className="display-5 fw-bold mb-2">Featured Skills</h2>
-              <p className="text-muted lead">Discover top-rated skills from expert instructors</p>
-            </div>
-            <div className="col-lg-4 d-flex align-items-center justify-content-lg-end">
-              <button className="btn btn-primary rounded-pill px-4">
-                <i className="bi bi-grid me-2"></i>
-                View All Skills
-              </button>
-            </div>
-          </div>
+          {error && (
+            <Alert variant="danger" className="my-3">
+              {error}
+            </Alert>
+          )}
 
-          <div className="row g-4">
-            {skillCards.map((card, index) => (
-              <div key={index} className="col-12 col-md-6 col-lg-3">
-                <Card {...card} />
-              </div>
-            ))}
-          </div>
-        </div>
+          <Row className="mt-4">
+            {filteredItems.length === 0 ? (
+              <Col className="text-center">
+                <h3>No items found</h3>
+              </Col>
+            ) : (
+              filteredItems.map(item => (
+                <Col key={item._id} xs={12} sm={6} lg={4} className="mb-4">
+                  <Card 
+                    foodItem={item}
+                    options={item.options[0]}
+                  />
+                </Col>
+              ))
+            )}
+          </Row>
+        </Container>
       </div>
-
-      {/* Categories Section */}
-      <div className="container-fluid py-5">
-        <div className="container">
-          <div className="text-center mb-5">
-            <h2 className="display-5 fw-bold mb-3">Browse by Category</h2>
-            <p className="lead text-muted">Find the perfect skill that matches your interests</p>
-          </div>
-          <div className="row g-4 justify-content-center">
-            {["Music", "Arts", "Crafts", "Photography", "Cooking", "Technology", "Fitness", "Languages"].map((category, index) => (
-              <div key={index} className="col-6 col-md-3">
-                <div className="card h-100 border-0 shadow-sm hover-lift"
-                     style={{
-                       transition: 'all 0.3s ease',
-                       cursor: 'pointer',
-                       borderRadius: '15px',
-                       overflow: 'hidden'
-                     }}
-                     onMouseEnter={(e) => {
-                       e.currentTarget.style.transform = 'translateY(-5px)';
-                       e.currentTarget.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
-                     }}
-                     onMouseLeave={(e) => {
-                       e.currentTarget.style.transform = 'translateY(0)';
-                       e.currentTarget.style.boxShadow = '';
-                     }}>
-                  <div className="card-body text-center p-4">
-                    <div className="mb-4">
-                      <i className={`bi ${categoryIcons[category] || 'bi-star'} fs-1 text-primary`}></i>
-                    </div>
-                    <h5 className="fw-bold mb-2">{category}</h5>
-                    <p className="text-muted mb-0">Explore {category.toLowerCase()} classes</p>
-                  </div>
-                  <div className="card-footer bg-primary bg-opacity-10 border-0 py-3">
-                    <small className="text-primary d-flex align-items-center justify-content-center">
-                      Learn More <i className="bi bi-arrow-right ms-2"></i>
-                    </small>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
       <Footer />
     </div>
   );
