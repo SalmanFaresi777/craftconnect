@@ -6,19 +6,36 @@ const mongoURI ="mongodb://gofood:gofood123@cluster0-shard-00-00.iwxmg.mongodb.n
 
 const connectToMongo = async () => {
     try {
-        await mongoose.connect(mongoURI); // No need for deprecated options
+        await mongoose.connect(mongoURI);
         console.log("Connected to MongoDB successfully!");
 
-        // Fetch data from food_items collection
-        const fetched_data = await mongoose.connection.db.collection("food_items");
-        fetched_data.find({}).toArray(function(err, data){
-            if (err) console.log(err);
-            else console.log();
-        });
+        // Fetch data from collections using promises
+        const fetchData = async () => {
+            try {
+                const foodItemsCollection = mongoose.connection.db.collection("food_items");
+                const foodCategoryCollection = mongoose.connection.db.collection("foodCategory");
+
+                const [foodItems, foodCategories] = await Promise.all([
+                    foodItemsCollection.find({}).toArray(),
+                    foodCategoryCollection.find({}).toArray()
+                ]);
+
+                global.food_items = foodItems;
+                global.foodCategory = foodCategories;
+
+                console.log("Data loaded successfully!");
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                throw error; // Re-throw to be caught by the outer try-catch
+            }
+        };
+
+        // Initial data fetch
+        await fetchData();
 
     } catch (error) {
-        console.error("Error connecting to MongoDB:", error);
-        process.exit(1); // Exit process with failure
+        console.error("Database connection/initialization error:", error);
+        process.exit(1);
     }
 };
 

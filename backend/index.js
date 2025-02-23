@@ -23,6 +23,7 @@ app.use((err, req, res, next) => {
 
 // Routes
 app.use('/api', require("./Routes/CreatUser"));
+app.use('/api', require("./Routes/DisplayData"));
 
 // Test route
 app.get('/test', (req, res) => {
