@@ -1,0 +1,168 @@
+.footer {
+    background-color: #8B4513;
+    color: #FFE4C4;
+    padding: 3rem 0 0;
+    margin-top: 3rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.footer-section {
+    margin-bottom: 2rem;
+}
+
+.brand-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-brand {
+    color: #FFE4C4;
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.footer-brand:hover {
+    color: #DEB887;
+}
+
+.footer-tagline {
+    color: #DEB887;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.footer-heading {
+    color: #FFE4C4;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.developers-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.developer-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.developer-card:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.developer-name {
+    color: #FFE4C4;
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+.developer-id {
+    color: #DEB887;
+    margin: 0 0 0.5rem 0;
+    font-size: 0.85rem;
+    font-family: monospace;
+}
+
+.developer-role {
+    color: #DEB887;
+    margin: 0 0 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.github-link {
+    color: #FFE4C4;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.github-link:hover {
+    color: #DEB887;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+    color: #FFE4C4;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #DEB887;
+}
+
+.footer-bottom {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 1.5rem 0;
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.copyright {
+    color: #DEB887;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.attribution {
+    color: #DEB887;
+    margin: 0.5rem 0 0;
+    font-size: 0.9rem;
+}
+
+.heart {
+    color: #FFE4C4;
+    display: inline-block;
+    animation: heartbeat 1.5s ease infinite;
+}
+
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-section {
+        text-align: center;
+    }
+    
+    .developers-grid {
+        justify-content: center;
+    }
+    
+    .developer-card {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}

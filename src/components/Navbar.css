@@ -1,0 +1,138 @@
+.navbar {
+  transition: all 0.3s ease;
+  padding: 0.5rem 2rem;
+  background-color: #8B4513 !important; /* Warm brown color */
+  min-height: 60px;
+}
+
+.navbar-brand {
+  font-size: 1.4rem;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.nav-link {
+  padding: 0.5rem 1rem !important;
+  font-size: 1rem !important;
+}
+
+.navbar-nav {
+  align-items: center;
+}
+
+.navbar-toggler {
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+}
+
+.navbar .btn {
+  padding: 0.375rem 1rem;
+  font-size: 0.9rem;
+}
+
+.bg-success-scrolled {
+  background-color: rgba(139, 69, 19, 0.95) !important; /* Transparent warm brown */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.brand-hover {
+  position: relative;
+  transition: all 0.3s ease;
+  color: #FFE4C4 !important; /* Bisque color for brand */
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.brand-hover:hover {
+  transform: translateY(-2px);
+  color: #FFDAB9 !important; /* Peach puff on hover */
+}
+
+.brand-subtitle {
+  display: block;
+  font-size: 0.7rem;
+  opacity: 0.9;
+  color: #DEB887 !important; /* Burlywood color */
+  margin-top: -2px;
+}
+
+.nav-link-hover {
+  position: relative;
+  transition: all 0.3s ease;
+  color: #FFE4C4 !important; /* Bisque color */
+  font-weight: 500;
+}
+
+.nav-link-hover:hover {
+  color: #FFDAB9 !important; /* Peach puff on hover */
+}
+
+.nav-link-hover::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: #DEB887; /* Burlywood color */
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link-hover:hover::after {
+  width: 100%;
+}
+
+.hover-effect {
+  transition: all 0.3s ease;
+}
+
+.btn.hover-effect {
+  background-color: #DEB887 !important; /* Burlywood color */
+  border-color: #DEB887 !important;
+  color: #8B4513 !important; /* Brown text */
+}
+
+.btn.hover-effect:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  background-color: #FFE4C4 !important; /* Bisque color on hover */
+  border-color: #FFE4C4 !important;
+}
+
+.btn.btn-outline-light.hover-effect {
+  border-color: #DEB887 !important;
+  color: #DEB887 !important;
+  background-color: transparent !important;
+}
+
+.btn.btn-outline-light.hover-effect:hover {
+  background-color: #DEB887 !important;
+  color: #8B4513 !important;
+}
+
+.transition-all {
+  transition: all 0.3s ease;
+}
+
+/* Badge styling */
+.badge.bg-danger {
+  background-color: #CD853F !important; /* Peru color for badge */
+  color: white !important;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.4rem 1rem;
+  }
+  
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+  
+  .brand-subtitle {
+    font-size: 0.6rem;
+  }
+}

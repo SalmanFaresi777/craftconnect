@@ -1,96 +1,115 @@
-import React, { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import Badge from 'react-bootstrap/Badge';
+import Modal from '../Modal';
+import Cart from '../screens/Cart';
+import { useCart, useDispatchCart } from '../components/ComponentReducer';
+import './Navbar.css';
 
 export default function Navbar() {
-  const [isNavCollapsed, setIsNavCollapsed] = useState(true);
+  const [cartView, setCartView] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const data = useCart();
+  const navigate = useNavigate();
   const location = useLocation();
 
-  const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    navigate("/login");
+  };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
-      <div className="container">
-        <Link className="navbar-brand d-flex align-items-center" to="/">
-          <i className="bi bi-boxes me-2 text-primary fs-3"></i>
-          <span className="fw-bold fs-4">CraftConnect</span>
-        </Link>
+    <div>
+      <nav className={`navbar navbar-expand-lg navbar-dark ${isScrolled ? 'bg-success-scrolled' : 'bg-success'} fixed-top transition-all`}>
+        <div className="container-fluid">
+          <Link className="navbar-brand fs-1 fst-italic brand-hover" to="/">
+            CraftConnect
+            <span className="brand-subtitle"></span>
+          </Link>
+          
+          <button 
+            className="navbar-toggler" 
+            type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#navbarNav" 
+            aria-controls="navbarNav" 
+            aria-expanded="false" 
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
 
-        <button 
-          className="navbar-toggler" 
-          type="button" 
-          data-bs-toggle="collapse" 
-          data-bs-target="#navbarNav" 
-          aria-controls="navbarNav" 
-          aria-expanded={!isNavCollapsed} 
-          aria-label="Toggle navigation"
-          onClick={handleNavCollapse}
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav me-auto mb-2">
+              {localStorage.getItem("authToken") && (
+                <li className="nav-item">
+                  <Link 
+                    className={`nav-link fs-5 nav-link-hover ${location.pathname === '/myorders' ? 'active' : ''}`} 
+                    to="/myorders"
+                  >
+                    My Orders
+                  </Link>
+                </li>
+              )}
+            </ul>
 
-        <div className={`${isNavCollapsed ? 'collapse' : ''} navbar-collapse`} id="navbarNav">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link 
-                className={`nav-link px-3 ${location.pathname === '/' ? 'active fw-bold' : ''}`} 
-                to="/"
-              >
-                <i className="bi bi-house-door me-1"></i>
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link 
-                className={`nav-link px-3 ${location.pathname === '/explore' ? 'active fw-bold' : ''}`} 
-                to="/explore"
-              >
-                <i className="bi bi-compass me-1"></i>
-                Explore
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link 
-                className={`nav-link px-3 ${location.pathname === '/categories' ? 'active fw-bold' : ''}`} 
-                to="/categories"
-              >
-                <i className="bi bi-grid me-1"></i>
-                Categories
-              </Link>
-            </li>
-          </ul>
-
-          <div className="d-flex gap-2">
-            <form className="d-flex me-3">
-              <div className="input-group">
-                <input 
-                  className="form-control border-end-0" 
-                  type="search" 
-                  placeholder="Search crafts..." 
-                  aria-label="Search"
-                />
-                <span className="input-group-text bg-white border-start-0">
-                  <i className="bi bi-search text-muted"></i>
-                </span>
+            {!localStorage.getItem("authToken") ? (
+              <div className='d-flex gap-2'>
+                <Link 
+                  className="btn btn-outline-light hover-effect" 
+                  to="/login"
+                >
+                  Login
+                </Link>
+                <Link 
+                  className="btn btn-light hover-effect" 
+                  to="/creatuser"
+                >
+                  Sign Up
+                </Link>
               </div>
-            </form>
-
-            <div className="d-flex gap-2">
-              <Link 
-                to="/login" 
-                className={`btn ${location.pathname === '/login' ? 'btn-primary' : 'btn-outline-primary'}`}
-              >
-                Sign In
-              </Link>
-              <Link 
-                to="/creatuser" 
-                className={`btn ${location.pathname === '/auth/createuser' ? 'btn-primary' : 'btn-outline-primary'}`}
-              >
-                Sign Up
-              </Link>
-            </div>
+            ) : (
+              <div className="d-flex align-items-center">
+                <button 
+                  className="btn btn-light hover-effect position-relative me-3" 
+                  onClick={() => setCartView(true)}
+                >
+                  <i className="bi bi-cart3"></i> Cart
+                  {data.length > 0 && (
+                    <Badge 
+                      pill 
+                      bg="danger" 
+                      className="position-absolute top-0 start-100 translate-middle"
+                    >
+                      {data.length}
+                    </Badge>
+                  )}
+                </button>
+                <button 
+                  className="btn btn-outline-light hover-effect" 
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
+              </div>
+            )}
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+
+      {cartView && (
+        <Modal onClose={() => setCartView(false)}>
+          <Cart />
+        </Modal>
+      )}
+    </div>
   );
 }
