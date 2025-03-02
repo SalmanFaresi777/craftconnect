@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import Card from '../components/Card';
-import MyOrders from './MyOrders';
-import Carousel from '../components/Carausel';
-import { Container, Row, Col, Form, Alert, Spinner } from 'react-bootstrap';
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
+import Card from '../components/Card'
+import MyOrder from './MyOrder';
+import Carausel from '../components/Carausel'
+import { FaFilter, FaSearch } from 'react-icons/fa';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Home.css';
 
 export default function Home() {
   const [search, setSearch] = useState('');
@@ -44,11 +45,11 @@ export default function Home() {
     } finally {
       setLoading(false);
     }
-  };
+  }
 
   useEffect(() => {
-    loadData();
-  }, []);
+    loadData()
+  }, [])
 
   const filteredItems = foodItem.filter(item => {
     const matchesSearch = item.name.toLowerCase().includes(search.toLowerCase());
@@ -56,72 +57,143 @@ export default function Home() {
     return matchesSearch && matchesCategory;
   });
 
+  const renderFilteredItems = () => {
+    if (selectedCategory === 'all') {
+      return foodCat.map((category) => {
+        const itemsInCategory = filteredItems.filter(item => item.CategoryName === category.CategoryName);
+        if (itemsInCategory.length === 0) return null;
+
+        return (
+          <div key={category._id} className="row mb-3">
+            <div className="fs-3 m-3">
+              {category.CategoryName}
+            </div>
+            <hr />
+            <div className="row">
+              {itemsInCategory.map(item => (
+                <div key={item._id} className="col-12 col-md-6 col-lg-3 mb-4">
+                  <Card foodItem={item} options={item.options[0]} />
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      }).filter(Boolean);
+    } else {
+      return (
+        <div className="row mb-3">
+          <div className="fs-3 m-3">
+            {selectedCategory}
+          </div>
+          <hr />
+          <div className="row">
+            {filteredItems.map(item => (
+              <div key={item._id} className="col-12 col-md-6 col-lg-3 mb-4">
+                <Card foodItem={item} options={item.options[0]} />
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+  };
+
   if (loading) {
     return (
-      <div className="d-flex justify-content-center align-items-center min-vh-100">
-        <Spinner animation="border" variant="success" />
+      <div>
+        <Navbar />
+        <div className="container mt-5 text-center">
+          <div className="spinner-border text-warning" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div>
+        <Navbar />
+        <div className="container mt-5 text-center text-danger">
+          <h3>Error loading data</h3>
+          <p>{error}</p>
+        </div>
+        <Footer />
       </div>
     );
   }
 
   return (
-    <div className="d-flex flex-column min-vh-100">
-      <Navbar />
-      <div className="flex-grow-1">
-        <Carousel />
-        
-        <Container className="my-4">
-          <Row className="g-4">
-            <Col md={8}>
-              <Form.Control
-                type="search"
-                placeholder="Search for crafts..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="search-input"
-              />
-            </Col>
-            <Col md={4}>
-              <Form.Select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className="category-select"
-              >
-                <option value="all">All Categories</option>
-                {foodCat.map(category => (
-                  <option key={category._id} value={category.CategoryName}>
-                    {category.CategoryName}
-                  </option>
-                ))}
-              </Form.Select>
-            </Col>
-          </Row>
+    <div>
+      <div><Navbar /></div>
 
-          {error && (
-            <Alert variant="danger" className="my-3">
-              {error}
-            </Alert>
-          )}
-
-          <Row className="mt-4">
-            {filteredItems.length === 0 ? (
-              <Col className="text-center">
-                <h3>No items found</h3>
-              </Col>
-            ) : (
-              filteredItems.map(item => (
-                <Col key={item._id} xs={12} sm={6} lg={4} className="mb-4">
-                  <Card 
-                    foodItem={item}
-                    options={item.options[0]}
+      <div>
+        <div id="carouselExampleFade" className="carousel slide carousel-fade" data-bs-ride="carousel">
+          <div className="carousel-inner" id='carousel'>
+            <div className="carousel-caption" style={{ zIndex: "10" }}>
+              <div className="search-filter-container">
+                <div className="search-box">
+                  <FaSearch className="search-icon" />
+                  <input 
+                    className="form-control search-input" 
+                    type="search" 
+                    placeholder="Search" 
+                    value={search} 
+                    onChange={(e) => setSearch(e.target.value)} 
                   />
-                </Col>
-              ))
-            )}
-          </Row>
-        </Container>
+                </div>
+                <div className="category-filter">
+                  <FaFilter className="filter-icon" />
+                  <select 
+                    className="form-select category-select" 
+                    value={selectedCategory}
+                    onChange={(e) => setSelectedCategory(e.target.value)}
+                  >
+                    <option value="all">All Categories</option>
+                    {foodCat.map(category => (
+                      <option key={category._id} value={category.CategoryName}>
+                        {category.CategoryName}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div className="carousel-item active">
+              <img src="/learn_7.jpg" className="d-block w-100" style={{ filter: "brightness(30%)" }} alt="Local iStock Image" />
+            </div>
+            <div className="carousel-item">
+              <img src="/learn_5.jpg" className="d-block w-100" style={{ filter: "brightness(30%)" }} alt="Local iStock Image" />
+            </div>
+            <div className="carousel-item">
+              <img src="/learn_3.jpg" className="d-block w-100" style={{ filter: "brightness(30%)" }} alt="Local iStock Image" />
+            </div>
+          </div>
+          <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Previous</span>
+          </button>
+          <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Next</span>
+          </button>
+        </div>
       </div>
-      <Footer />
+
+      <div className='container'>
+        {filteredItems.length === 0 ? (
+          <div className="no-results">
+            <h3>No items found</h3>
+            <p>Try adjusting your search or category filter</p>
+          </div>
+        ) : (
+          renderFilteredItems()
+        )}
+      </div>
+
+      <div><Footer /></div>
     </div>
   );
 }

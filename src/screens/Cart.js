@@ -1,146 +1,143 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useCart, useDispatchCart } from '../components/ComponentReducer';
-import { useNavigate } from 'react-router-dom';
 import './Cart.css';
+import { FaTrash, FaShoppingBag, FaCreditCard } from 'react-icons/fa';
 
 export default function Cart() {
-    const data = useCart();
-    const dispatch = useDispatchCart();
-    const navigate = useNavigate();
+  let data = useCart();
+  let dispatch = useDispatchCart();
+  const [loading, setLoading] = useState(false);
 
-    const handleNavigateHome = () => {
-        navigate('/');
-    };
-
-    if (data.length === 0) {
-        return (
-            <div className="empty-cart-container">
-                <div className="empty-cart">
-                    <button 
-                        className="close-btn"
-                        onClick={handleNavigateHome}
-                        aria-label="Close"
-                    />
-                    <img 
-                        src="/empty-cart.png" 
-                        onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.src = "https://cdn-icons-png.flaticon.com/512/2038/2038854.png";
-                        }}
-                        alt="Empty Cart" 
-                        className="empty-cart-image"
-                        style={{ animation: 'float 3s ease-in-out infinite' }}
-                    />
-                    <h2>Your Cart is Empty!</h2>
-                    <p>Looks like you haven't added any workshops yet.</p>
-                    <button 
-                        className="browse-btn"
-                        onClick={handleNavigateHome}
-                    >
-                        Browse CraftConnect
-                    </button>
-                </div>
-            </div>
-        );
-    }
-
-    const totalPrice = data.reduce((total, item) => total + item.price * item.qty, 0);
-    const totalItems = data.reduce((total, item) => total + item.qty, 0);
-
-    const handleCheckout = () => {
-        // Implement checkout logic here
-        alert('Checkout functionality will be implemented soon!');
-    };
-
-    const handleQuantityChange = (index, newQty) => {
-        if (newQty > 0) {
-            dispatch({
-                type: "UPDATE_QTY",
-                index: index,
-                qty: newQty
-            });
-        }
-    };
-
+  if (data.length === 0) {
     return (
-        <div className="cart-container">
-            <button 
-                className="close-btn"
-                onClick={handleNavigateHome}
-                aria-label="Close"
-            />
-            <div className="cart-header">
-                <h1>Shopping Cart</h1>
-                <span className="item-count">{totalItems} item{totalItems !== 1 ? 's' : ''}</span>
-            </div>
-
-            <div className="cart-content">
-                <div className="cart-items">
-                    {data.map((item, index) => (
-                        <div key={index} className="cart-item">
-                            <div className="item-image">
-                                <img src={item.img || '/workshop-placeholder.png'} alt={item.name} />
-                            </div>
-                            <div className="item-details">
-                                <h3>{item.name}</h3>
-                                <p className="item-option">{item.size}</p>
-                                <div className="quantity-controls">
-                                    <button 
-                                        className="qty-btn"
-                                        onClick={() => handleQuantityChange(index, item.qty - 1)}
-                                    >
-                                        -
-                                    </button>
-                                    <span className="qty-display">{item.qty}</span>
-                                    <button 
-                                        className="qty-btn"
-                                        onClick={() => handleQuantityChange(index, item.qty + 1)}
-                                    >
-                                        +
-                                    </button>
-                                </div>
-                            </div>
-                            <div className="item-price">
-                                ₹{item.price * item.qty}
-                            </div>
-                            <button 
-                                className="remove-btn"
-                                onClick={() => dispatch({ type: "REMOVE", index: index })}
-                            >
-                                <i className="bi bi-trash"></i>
-                            </button>
-                        </div>
-                    ))}
-                </div>
-
-                <div className="cart-summary">
-                    <h2>Order Summary</h2>
-                    <div className="summary-item">
-                        <span>Subtotal ({totalItems} items)</span>
-                        <span>₹{totalPrice}</span>
-                    </div>
-                    <div className="summary-item">
-                        <span>Discount</span>
-                        <span className="discount">-₹0</span>
-                    </div>
-                    <div className="summary-item total">
-                        <span>Total Amount</span>
-                        <span>₹{totalPrice}</span>
-                    </div>
-                    <button 
-                        className="checkout-btn"
-                        onClick={handleCheckout}
-                    >
-                        Proceed to Checkout
-                    </button>
-                    <button 
-                        className="continue-shopping"
-                        onClick={handleNavigateHome}
-                    >
-                        Continue Shopping
-                    </button>
-                </div>
-            </div>
+      <div className="cart-empty">
+        <div className="empty-cart-content">
+          <FaShoppingBag className="empty-cart-icon" />
+          <h2>Your Cart is Empty!</h2>
+          <p>Add some delicious items to your cart and come back here to checkout.</p>
         </div>
-    );
+      </div>
+    )
+  }
+
+  const handleCheckOut = async () => {
+    try {
+      setLoading(true);
+      let userEmail = localStorage.getItem("userEmail");
+      
+      // First create the order
+      let orderResponse = await fetch("http://localhost:5000/api/orderData", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          order_data: data,
+          email: userEmail,
+          order_date: new Date().toDateString()
+        })
+      });
+
+      if (orderResponse.status === 200) {
+        // Initialize SSLCommerz payment
+        const paymentResponse = await fetch("http://localhost:5000/api/payment/create", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            total_amount: data.reduce((total, food) => total + food.price, 0),
+            cus_email: userEmail,
+            order_items: data.map(item => ({
+              name: item.name,
+              price: item.price,
+              quantity: item.qty
+            }))
+          })
+        });
+
+        const paymentData = await paymentResponse.json();
+        
+        if (paymentData.paymentUrl) {
+          // Redirect to SSLCommerz payment gateway
+          window.location.href = paymentData.paymentUrl;
+        } else {
+          alert("Payment initialization failed!");
+        }
+      }
+    } catch (error) {
+      console.error("Payment Error:", error);
+      alert("Payment process failed. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  let totalPrice = data.reduce((total, food) => total + food.price, 0);
+
+  return (
+    <div className="cart-container">
+      <div className="cart-content">
+        <h1 className="cart-title">Shopping Cart</h1>
+        
+        <div className="cart-items">
+          {data.map((food, index) => (
+            <div key={index} className="cart-item">
+              <div className="item-image">
+                <img src={food.img} alt={food.name} />
+              </div>
+              <div className="item-details">
+                <h3 className="item-name">{food.name}</h3>
+                <div className="item-meta">
+                  <span className="item-size">Size: {food.size}</span>
+                  <span className="item-quantity">Qty: {food.qty}</span>
+                </div>
+              </div>
+              <div className="item-price">
+                ₹{food.price}/-
+              </div>
+              <button 
+                className="remove-item-btn"
+                onClick={() => { 
+                  dispatch({ type: "REMOVE", index: index });
+                }}
+                aria-label="Remove item"
+              >
+                <FaTrash />
+              </button>
+            </div>
+          ))}
+        </div>
+
+        <div className="cart-summary">
+          <div className="summary-row">
+            <span>Subtotal:</span>
+            <span>₹{totalPrice}/-</span>
+          </div>
+          <div className="summary-row">
+            <span>Delivery Fee:</span>
+            <span>₹0/-</span>
+          </div>
+          <div className="summary-row total">
+            <span>Total:</span>
+            <span>₹{totalPrice}/-</span>
+          </div>
+          
+          <button 
+            className={`checkout-btn ${loading ? 'loading' : ''}`}
+            onClick={handleCheckOut} 
+            disabled={loading}
+          >
+            <FaCreditCard className="btn-icon" />
+            <span>{loading ? 'Processing...' : 'Proceed to Payment'}</span>
+          </button>
+          
+          <div className="payment-info">
+            <p>Secure payment powered by SSLCommerz</p>
+            <p>Your order details will be sent to {localStorage.getItem("userEmail")}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }

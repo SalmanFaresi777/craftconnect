@@ -1,17 +1,47 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './Login.css';
 import Navbar from '../components/Navbar';
-import './Auth.css';
 
 export default function Login() {
-  const [credentials, setCredentials] = useState({ email: "", password: "" });
-  const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
-  let navigate = useNavigate();
+
+  const [credentials, setCredentials] = useState({ email: "", password: "" })
+  let [address, setAddress] = useState("");
+  let navigate = useNavigate()
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+    let navLocation = () => {
+      return new Promise((res, rej) => {
+        navigator.geolocation.getCurrentPosition(res, rej);
+      });
+    }
+    let latlong = await navLocation().then(res => {
+      let latitude = res.coords.latitude;
+      let longitude = res.coords.longitude;
+      return [latitude, longitude]
+    })
+    // console.log(latlong)
+    let [lat, long] = latlong
+    console.log(lat, long)
+    const response = await fetch("http://localhost:5000/api/auth/getlocation", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ latlong: { lat, long } })
+
+    });
+    const { location } = await response.json()
+    console.log(location);
+    setAddress(location);
+    setCredentials({ ...credentials, [e.target.name]: location })
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
     try {
       const response = await fetch("http://localhost:5000/api/loginuser", {
         method: 'POST',
@@ -25,116 +55,53 @@ export default function Login() {
           password: credentials.password,
         })
       });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.errors ? errorData.errors[0].msg : "Registration failed");
+      }
+
       const json = await response.json();
       if (json.success) {
+        localStorage.setItem("userEmail", credentials.email);
         localStorage.setItem("authToken", json.authToken);
+        console.log(localStorage.getItem("authToken"));
         navigate("/");
-      } else {
-        alert("Enter Valid Credentials");
+        alert("Successfully Logged In!");
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("An error occurred. Please try again.");
-    } finally {
-      setLoading(false);
+      alert(error.message || "An error occurred while logging in. Please try again.");
     }
-  };
+  }
 
-  const handleChange = (e) => {
-    setCredentials({ ...credentials, [e.target.name]: e.target.value });
-  };
+  const onChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value })
+  }
+
 
   return (
-    <div className="auth-wrapper">
+    <>
       <Navbar />
-      <div className="auth-container">
-        <div className="auth-box">
-          <div className="auth-header">
-            <h2>Welcome Back!</h2>
-            <p>Sign in to continue your crafting journey</p>
-          </div>
-
-          <form onSubmit={handleSubmit} className="auth-form">
+      <div className="login-container">
+        <div className="login-card">
+          <h2 className="login-title">Login</h2>
+          <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="email">Email Address</label>
-              <div className="input-group">
-                <i className="bi bi-envelope input-icon"></i>
-                <input
-                  type="email"
-                  className="form-control"
-                  id="email"
-                  name="email"
-                  value={credentials.email}
-                  onChange={handleChange}
-                  placeholder="Enter your email"
-                  required
-                />
-              </div>
+              <label htmlFor="email" className="form-label">Email address</label>
+              <input type="email" className="form-control" name='email' value={credentials.email} onChange={onChange} aria-describedby="emailHelp" />
             </div>
-
             <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <div className="input-group">
-                <i className="bi bi-lock input-icon"></i>
-                <input
-                  type={showPassword ? "text" : "password"}
-                  className="form-control"
-                  id="password"
-                  name="password"
-                  value={credentials.password}
-                  onChange={handleChange}
-                  placeholder="Enter your password"
-                  required
-                />
-                <button
-                  type="button"
-                  className="password-toggle"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  <i className={`bi bi-eye${showPassword ? '-slash' : ''}`}></i>
-                </button>
-              </div>
+              <label htmlFor="password" className="form-label">Password</label>
+              <input type="password" className="form-control" value={credentials.password} onChange={onChange} name='password' />
             </div>
-
-            <button 
-              type="submit" 
-              className="auth-button"
-              disabled={loading}
-            >
-              {loading ? (
-                <span className="loading-spinner"></span>
-              ) : (
-                'Sign In'
-              )}
-            </button>
+            <button type="submit" className="login-btn">Login</button>
+            <div className="signup-link">
+              Don't have an account? <Link to="/creatuser">Sign Up</Link>
+            </div>
           </form>
-
-          <div className="auth-footer">
-            <p>Don't have an account? <Link to="/signup" className="auth-link">Sign Up</Link></p>
-          </div>
-        </div>
-
-        <div className="auth-features">
-          <h3>Why Choose CraftConnect?</h3>
-          <div className="features-grid">
-            <div className="feature-item">
-              <i className="bi bi-people-fill"></i>
-              <h4>Community</h4>
-              <p>Join a vibrant community of craft enthusiasts</p>
-            </div>
-            <div className="feature-item">
-              <i className="bi bi-book-fill"></i>
-              <h4>Learn</h4>
-              <p>Access unique workshops and tutorials</p>
-            </div>
-            <div className="feature-item">
-              <i className="bi bi-share-fill"></i>
-              <h4>Share</h4>
-              <p>Share your skills and earn while teaching</p>
-            </div>
-          </div>
         </div>
       </div>
-    </div>
-  );
+    </>
+  )
 }
