@@ -1,168 +1,83 @@
 .footer {
-    background-color: #8B4513;
-    color: #FFE4C4;
-    padding: 3rem 0 0;
-    margin-top: 3rem;
+  background: linear-gradient(to right, #1a1a1a, #2d2d2d);
+  color: #ffffff;
+  padding: 3rem 0;
+  margin-top: 4rem;
 }
 
 .footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem;
 }
 
 .footer-section {
-    margin-bottom: 2rem;
+  flex: 1;
+  min-width: 250px;
+  padding: 0 1rem;
 }
 
-.brand-section {
-    display: flex;
-    flex-direction: column;
+.footer-section h4 {
+  color: #ffc107;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
 }
 
-.footer-brand {
-    color: #FFE4C4;
-    text-decoration: none;
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
+.footer-section h4::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 50px;
+  height: 2px;
+  background-color: #ffc107;
 }
 
-.footer-brand:hover {
-    color: #DEB887;
-}
-
-.footer-tagline {
-    color: #DEB887;
-    font-size: 1rem;
-    margin: 0;
-}
-
-.footer-heading {
-    color: #FFE4C4;
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    font-weight: 600;
-}
-
-.developers-grid {
-    display: grid;
-    gap: 1.5rem;
-}
-
-.developer-card {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 1rem;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-}
-
-.developer-card:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
-}
-
-.developer-name {
-    color: #FFE4C4;
-    margin: 0 0 0.5rem 0;
-    font-size: 1.1rem;
-}
-
-.developer-id {
-    color: #DEB887;
-    margin: 0 0 0.5rem 0;
-    font-size: 0.85rem;
-    font-family: monospace;
-}
-
-.developer-role {
-    color: #DEB887;
-    margin: 0 0 0.5rem 0;
-    font-size: 0.9rem;
-}
-
-.github-link {
-    color: #FFE4C4;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.9rem;
-}
-
-.github-link:hover {
-    color: #DEB887;
+.footer-section p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
 }
 
 .footer-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .footer-links li {
-    margin-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
 }
 
 .footer-links a {
-    color: #FFE4C4;
-    text-decoration: none;
-    transition: color 0.3s ease;
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .footer-links a:hover {
-    color: #DEB887;
+  color: #ffc107;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.social-links a {
+  color: #ffffff;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #ffc107;
 }
 
 .footer-bottom {
-    background-color: rgba(0, 0, 0, 0.2);
-    padding: 1.5rem 0;
-    margin-top: 3rem;
-    text-align: center;
-}
-
-.copyright {
-    color: #DEB887;
-    margin: 0;
-    font-size: 0.9rem;
-}
-
-.attribution {
-    color: #DEB887;
-    margin: 0.5rem 0 0;
-    font-size: 0.9rem;
-}
-
-.heart {
-    color: #FFE4C4;
-    display: inline-block;
-    animation: heartbeat 1.5s ease infinite;
-}
-
-@keyframes heartbeat {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-}
-
-@media (max-width: 768px) {
-    .footer-content {
-        grid-template-columns: 1fr;
-    }
-    
-    .footer-section {
-        text-align: center;
-    }
-    
-    .developers-grid {
-        justify-content: center;
-    }
-    
-    .developer-card {
-        max-width: 300px;
-        margin: 0 auto;
-    }
+  text-align: center;
+  padding-top: 2rem;
+  margin-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
