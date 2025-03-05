@@ -12,7 +12,7 @@
 }
 
 .card-details-modal {
-    background-color: #2c3e50;
+    background-color: var(--bs-body-bg);
     border-radius: 12px;
     width: 90%;
     max-width: 900px;
@@ -30,7 +30,7 @@
     border: none;
     font-size: 24px;
     cursor: pointer;
-    color: #ffffff;
+    color: var(--bs-body-color);
     z-index: 2;
     transition: transform 0.2s;
 }
@@ -73,13 +73,13 @@
 
 .details-section h2 {
     margin: 0;
-    color: #ffd700;
+    color: var(--bs-primary);
 }
 
 .description {
     font-size: 1.1em;
     line-height: 1.6;
-    color: #ffffff;
+    color: var(--bs-body-color);
 }
 
 .options-container {
@@ -97,13 +97,13 @@
     width: 100%;
     padding: 8px;
     border-radius: 4px;
-    background-color: #34495e;
-    color: #ffffff;
-    border: 1px solid #456789;
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+    border: 1px solid var(--bs-border-color);
 }
 
 .nutrition-info {
-    background-color: rgba(255, 215, 0, 0.1);
+    background-color: rgba(var(--bs-primary-rgb), 0.1);
     padding: 20px;
     border-radius: 8px;
     margin: 20px 0;
@@ -112,7 +112,6 @@
 .nutrition-info h3 {
     margin: 0 0 15px 0;
     font-size: 1.2em;
-    color: #ffd700;
 }
 
 .nutrition-grid {
@@ -123,9 +122,8 @@
 
 .nutrition-grid div {
     padding: 8px;
-    background-color: #34495e;
+    background-color: var(--bs-body-bg);
     border-radius: 4px;
-    color: #ffffff;
 }
 
 .price-action-container {
@@ -138,7 +136,7 @@
 .price-tag {
     font-size: 1.5em;
     font-weight: bold;
-    color: #ffd700;
+    color: var(--bs-primary);
 }
 
 .add-to-cart-btn {
@@ -146,8 +144,8 @@
     align-items: center;
     gap: 8px;
     padding: 10px 20px;
-    background-color: #ffd700;
-    color: #2c3e50;
+    background-color: var(--bs-primary);
+    color: white;
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -156,7 +154,7 @@
 
 .add-to-cart-btn:hover {
     transform: translateY(-2px);
-    background-color: #ffed4a;
+    background-color: var(--bs-primary-dark);
 }
 
 .cart-icon {
@@ -167,8 +165,8 @@
     position: absolute;
     top: 10px;
     left: 10px;
-    background-color: #ffd700;
-    color: #2c3e50;
+    background-color: var(--bs-primary);
+    color: white;
     padding: 5px 10px;
     border-radius: 20px;
     font-size: 0.9em;
@@ -177,13 +175,13 @@
 .video-links {
     margin: 20px 0;
     padding: 15px;
-    background-color: #34495e;
+    background-color: rgba(0, 0, 0, 0.05);
     border-radius: 8px;
 }
 
 .video-links h3 {
     margin-bottom: 15px;
-    color: #ffd700;
+    color: #333;
     font-size: 1.2rem;
 }
 
@@ -196,15 +194,15 @@
 .video-link {
     display: inline-block;
     padding: 10px 15px;
-    background-color: #ffd700;
-    color: #2c3e50;
+    background-color: #007bff;
+    color: white;
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
 
 .video-link:hover {
-    background-color: #ffed4a;
-    color: #2c3e50;
+    background-color: #0056b3;
+    color: white;
     text-decoration: none;
 }
