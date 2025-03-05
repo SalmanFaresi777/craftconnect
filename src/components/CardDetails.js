@@ -64,25 +64,33 @@ export default function CardDetails({ foodItem, options, onClose, onAddToCart })
                             </div>
                         </div>
 
+                        <div className="nutrition-info">
+                            <h3>Nutrition Information</h3>
+                            <div className="nutrition-grid">
+                                <div>Calories: {foodItem.calories || 'N/A'}</div>
+                                <div>Protein: {foodItem.protein || 'N/A'}</div>
+                                <div>Carbs: {foodItem.carbs || 'N/A'}</div>
+                                <div>Fat: {foodItem.fat || 'N/A'}</div>
+                            </div>
+                        </div>
 
                         {foodItem.name === "Chicken Fried Rice" && (
                             <div className="video-links">
-                                <h3>Tutorial Videos</h3>
+                                <h3>Recipe Videos</h3>
                                 <div className="video-grid">
                                     <a href="https://drive.google.com/file/d/1IibHarfvL5zo5iQwbM2FXuHtMkS1U389/view?usp=drive_link" 
                                        target="_blank" 
                                        rel="noopener noreferrer"
                                        className="video-link">
-                                        Tutorial 1
+                                        Recipe Video 1
                                     </a>
                                     <a href="https://drive.google.com/file/d/1wR5Gb4mG-YsDTxIZ_zIG_45tbg0ObKec/view?usp=drive_link" 
                                        target="_blank" 
                                        rel="noopener noreferrer"
                                        className="video-link">
-                                        Tutorial 2
+                                        Recipe Video 2
                                     </a>
                                 </div>
-                                <h3>Order For More...</h3>
                             </div>
                         )}
 

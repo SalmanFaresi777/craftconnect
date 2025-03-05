@@ -179,19 +179,12 @@ export default function MyOrder() {
                                                                     className="details-btn mt-2"
                                                                     onClick={(e) => {
                                                                         e.stopPropagation();
-                                                                        setSelectedOrder({
-                                                                            foodItem: {
-                                                                                name: arrayData.name,
-                                                                                img: arrayData.img,
-                                                                                description: arrayData.description,
-                                                                                category: arrayData.CategoryName,
-                                                                                calories: arrayData.calories,
-                                                                                protein: arrayData.protein,
-                                                                                carbs: arrayData.carbs,
-                                                                                fat: arrayData.fat
-                                                                            },
-                                                                            options: { [arrayData.size]: arrayData.price }
-                                                                        });
+                                                                        setSelectedOrder([{
+                                                                            ...item[0],
+                                                                            Order_date: item[0]?.Order_date,
+                                                                            status: item[0]?.status,
+                                                                            transaction_id: item[0]?.transaction_id
+                                                                        }, arrayData]);
                                                                     }}
                                                                 >
                                                                     <FaInfoCircle className="me-1" />
@@ -225,22 +218,8 @@ export default function MyOrder() {
             </div>
             {selectedOrder && (
                 <MyOrderDetails 
-                    foodItem={selectedOrder.foodItem}
-                    options={selectedOrder.options}
-                    onClose={() => setSelectedOrder(null)}
-                    onAddToCart={({ qty, size }) => {
-                        // Handle adding to cart
-                        // dispatch({
-                        //     type: "ADD",
-                        //     id: selectedOrder.foodItem._id,
-                        //     name: selectedOrder.foodItem.name,
-                        //     price: parseInt(selectedOrder.options[size]),
-                        //     qty: qty,
-                        //     size: size,
-                        //     img: selectedOrder.foodItem.img
-                        // });
-                        setSelectedOrder(null);
-                    }}
+                    orderData={selectedOrder} 
+                    onClose={() => setSelectedOrder(null)} 
                 />
             )}
             <Footer />
