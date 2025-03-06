@@ -1,0 +1,250 @@
+.auth-wrapper {
+    min-height: 100vh;
+    background-color: #1a1a1a;
+    padding: 2rem 0;
+}
+
+.auth-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.auth-box {
+    background-color: #242424;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-header h2 {
+    color: #CD853F;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.auth-header p {
+    color: #999;
+    font-size: 1rem;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    color: #DEB887;
+    font-size: 0.9rem;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 1rem;
+    color: #8B4513;
+    font-size: 1.1rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.8rem 1rem 0.8rem 2.8rem;
+    background-color: #333;
+    border: 1px solid #444;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #CD853F;
+    box-shadow: 0 0 0 2px rgba(205, 133, 63, 0.2);
+}
+
+.password-toggle,
+.location-btn {
+    position: absolute;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: #8B4513;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.password-toggle:hover,
+.location-btn:hover {
+    color: #CD853F;
+}
+
+.auth-button {
+    background: linear-gradient(135deg, #CD853F 0%, #8B4513 100%);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.auth-button:hover {
+    background: linear-gradient(135deg, #8B4513 0%, #CD853F 100%);
+    transform: translateY(-2px);
+}
+
+.auth-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 2rem;
+    color: #999;
+}
+
+.auth-link {
+    color: #CD853F;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.auth-link:hover {
+    color: #8B4513;
+}
+
+.auth-features {
+    color: #fff;
+    padding: 2rem;
+}
+
+.auth-features h3 {
+    color: #CD853F;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.features-grid,
+.steps-grid {
+    display: grid;
+    gap: 2rem;
+}
+
+.feature-item,
+.step-item {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: #242424;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.feature-item:hover,
+.step-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(205, 133, 63, 0.2);
+}
+
+.feature-item i {
+    font-size: 2rem;
+    color: #CD853F;
+    margin-bottom: 1rem;
+}
+
+.feature-item h4,
+.step-item h4 {
+    color: #DEB887;
+    margin-bottom: 0.5rem;
+}
+
+.feature-item p,
+.step-item p {
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #CD853F 0%, #8B4513 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+}
+
+.loading-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 0.8s linear infinite;
+}
+
+.loading-spinner.small {
+    width: 16px;
+    height: 16px;
+    border-width: 1px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .auth-container {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .auth-box {
+        padding: 1.5rem;
+    }
+
+    .auth-features {
+        display: none;
+    }
+}
