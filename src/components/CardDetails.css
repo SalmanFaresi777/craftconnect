@@ -1,0 +1,273 @@
+.card-details-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.card-details-modal {
+    background-color: #2c3e50;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #ffffff;
+    z-index: 2;
+    transition: transform 0.2s;
+}
+
+.close-button:hover {
+    transform: scale(1.1);
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    padding: 30px;
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        flex-direction: column;
+    }
+}
+
+.image-section {
+    flex: 1;
+    position: relative;
+}
+
+.image-section img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.details-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.details-section h2 {
+    margin: 0;
+    color: #ffd700;
+}
+
+.description {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #ffffff;
+}
+
+.options-container {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.quantity-select,
+.size-select {
+    flex: 1;
+}
+
+.quantity-select label,
+.size-select label {
+    color: orange;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.form-select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: #34495e;
+    color: #ffffff;
+    border: 1px solid #456789;
+}
+
+.nutrition-info {
+    background-color: rgba(255, 215, 0, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.nutrition-info h3 {
+    margin: 0 0 15px 0;
+    font-size: 1.2em;
+    color: #ffd700;
+}
+
+.nutrition-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.nutrition-grid div {
+    padding: 8px;
+    background-color: #34495e;
+    border-radius: 4px;
+    color: #ffffff;
+}
+
+.price-action-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+}
+
+.price-tag {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #ffd700;
+}
+
+.add-to-cart-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background-color: #ffd700;
+    color: #2c3e50;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.add-to-cart-btn:hover {
+    transform: translateY(-2px);
+    background-color: #ffed4a;
+}
+
+.cart-icon {
+    font-size: 1.2em;
+}
+
+.category-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #ffd700;
+    color: #2c3e50;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9em;
+}
+
+.video-links {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #34495e;
+    border-radius: 8px;
+}
+
+.video-links h3 {
+    margin-bottom: 15px;
+    color: #ffd700;
+    font-size: 1.2rem;
+}
+
+.video-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.video-link {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #ffd700;
+    color: #2c3e50;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.video-link:hover {
+    background-color: #ffed4a;
+    color: #2c3e50;
+    text-decoration: none;
+}
+
+.contact-info {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.contact-info h3 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #495057;
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.contact-link:hover {
+    background-color: #e9ecef;
+    color: #212529;
+}
+
+.contact-link svg {
+    font-size: 1.2rem;
+}
+
+/* Color customization for different social icons */
+.contact-link .fa-phone {
+    color: #28a745;
+}
+
+.contact-link .fa-facebook {
+    color: #1877f2;
+}
+
+.contact-link .fa-whatsapp {
+    color: #25d366;
+}
+
+.contact-link .fa-instagram {
+    color: #e4405f;
+}
