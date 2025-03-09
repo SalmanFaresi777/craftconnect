@@ -20,6 +20,7 @@ import MyOrder from './screens/MyOrder';
 import PaymentSuccess from './screens/PaymentSuccess';
 import PaymentFail from './screens/PaymentFail';
 import PaymentCancel from './screens/PaymentCancel';
+import SellerSignup from './screens/SellerSignup';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route exact path="/payment-success" element={<PaymentSuccess />} />
             <Route exact path="/payment-fail" element={<PaymentFail />} />
             <Route exact path="/payment-cancel" element={<PaymentCancel />} />
+            <Route exact path="/seller-signup" element={<SellerSignup />} />
 
           </Routes>
 

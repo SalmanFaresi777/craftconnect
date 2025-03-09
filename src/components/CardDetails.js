@@ -105,9 +105,51 @@ export default function CardDetails({ foodItem, options, onClose, onAddToCart })
                                 </div>
                                 <h3>Order For More Tutorials...</h3>
                             </div>
+                        )}
+
+                        {foodItem.name === "Beef Biryani" && (
+                            <div className="video-links">
+                                <h3>Tutorial Videos</h3>
+                                <div className="video-grid">
+                                    <a href="https://drive.google.com/file/d/1IibHarfvL5zo5iQwbM2FXuHtMkS1U389/view?usp=drive_link" 
+                                       target="_blank" 
+                                       rel="noopener noreferrer"
+                                       className="video-link">
+                                        Tutorial 1
+                                    </a>
+                                    <a href="https://drive.google.com/file/d/1wR5Gb4mG-YsDTxIZ_zIG_45tbg0ObKec/view?usp=drive_link" 
+                                       target="_blank" 
+                                       rel="noopener noreferrer"
+                                       className="video-link">
+                                        Tutorial 2
+                                    </a>
+                                </div>
+                                <h3>Order For More Tutorials...</h3>
+                            </div>
+                        )}
+
+                        {foodItem.name === "Prawn Fried Rice" && (
+                            <div className="video-links">
+                                <h3>Tutorial Videos</h3>
+                                <div className="video-grid">
+                                    <a href="https://drive.google.com/file/d/1IibHarfvL5zo5iQwbM2FXuHtMkS1U389/view?usp=drive_link" 
+                                       target="_blank" 
+                                       rel="noopener noreferrer"
+                                       className="video-link">
+                                        Tutorial 1
+                                    </a>
+                                    <a href="https://drive.google.com/file/d/1wR5Gb4mG-YsDTxIZ_zIG_45tbg0ObKec/view?usp=drive_link" 
+                                       target="_blank" 
+                                       rel="noopener noreferrer"
+                                       className="video-link">
+                                        Tutorial 2
+                                    </a>
+                                </div>
+                                <h3>Order For More Tutorials...</h3>
+                            </div>
                         )}  
 
-                         {foodItem.name === "Chilli Paneer" && (
+                        {foodItem.name === "Chilli Paneer" && (
                             <div className="video-links">
                                 <h3>Tutorial Videos</h3>
                                 <div className="video-grid">
@@ -192,6 +234,111 @@ export default function CardDetails({ foodItem, options, onClose, onAddToCart })
                         )}
 
                         {foodItem.name === "C++" && (
+                            <div className="video-links">
+                                <h3>Tutorial Videos</h3>
+                                <div className="video-grid">
+                                    <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                       target="_blank" 
+                                       rel="noopener noreferrer"
+                                       className="video-link">
+                                        Tutorial 1
+                                    </a>
+                                    <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                       target="_blank" 
+                                       rel="noopener noreferrer"
+                                       className="video-link">
+                                        Tutorial 2
+                                    </a>
+                                </div>
+                                <h3>Order For More Tutorials...</h3>
+                            </div>
+                        )}
+
+{foodItem.name === "Java" && (
+                            <div className="video-links">
+                                <h3>Tutorial Videos</h3>
+                                <div className="video-grid">
+                                    <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                       target="_blank" 
+                                       rel="noopener noreferrer"
+                                       className="video-link">
+                                        Tutorial 1
+                                    </a>
+                                    <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                       target="_blank" 
+                                       rel="noopener noreferrer"
+                                       className="video-link">
+                                        Tutorial 2
+                                    </a>
+                                </div>
+                                <h3>Order For More Tutorials...</h3>
+                            </div>
+                        )}
+
+{foodItem.name === "Python" && (
+                            <div className="video-links">
+                                <h3>Tutorial Videos</h3>
+                                <div className="video-grid">
+                                    <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                       target="_blank" 
+                                       rel="noopener noreferrer"
+                                       className="video-link">
+                                        Tutorial 1
+                                    </a>
+                                    <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                       target="_blank" 
+                                       rel="noopener noreferrer"
+                                       className="video-link">
+                                        Tutorial 2
+                                    </a>
+                                </div>
+                                <h3>Order For More Tutorials...</h3>
+                            </div>
+                        )}
+
+{foodItem.name === "Guitar" && (
+                            <div className="video-links">
+                                <h3>Tutorial Videos</h3>
+                                <div className="video-grid">
+                                    <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                       target="_blank" 
+                                       rel="noopener noreferrer"
+                                       className="video-link">
+                                        Tutorial 1
+                                    </a>
+                                    <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                       target="_blank" 
+                                       rel="noopener noreferrer"
+                                       className="video-link">
+                                        Tutorial 2
+                                    </a>
+                                </div>
+                                <h3>Order For More Tutorials...</h3>
+                            </div>
+                        )}
+
+{foodItem.name === "Flute" && (
+                            <div className="video-links">
+                                <h3>Tutorial Videos</h3>
+                                <div className="video-grid">
+                                    <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                       target="_blank" 
+                                       rel="noopener noreferrer"
+                                       className="video-link">
+                                        Tutorial 1
+                                    </a>
+                                    <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                       target="_blank" 
+                                       rel="noopener noreferrer"
+                                       className="video-link">
+                                        Tutorial 2
+                                    </a>
+                                </div>
+                                <h3>Order For More Tutorials...</h3>
+                            </div>
+                        )}
+
+{foodItem.name === "Piano" && (
                             <div className="video-links">
                                 <h3>Tutorial Videos</h3>
                                 <div className="video-grid">

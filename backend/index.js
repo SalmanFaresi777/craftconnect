@@ -27,6 +27,7 @@ app.use('/api', require("./Routes/CreatUser"));
 app.use('/api', require("./Routes/DisplayData"));
 app.use('/api', require("./Routes/OrderData")); 
 app.use('/api/payment', require("./Routes/paymentRoutes")); 
+app.use('/api/seller', require("./Routes/sellerRoutes")); 
 
 // Test route
 app.get('/test', (req, res) => {

@@ -437,6 +437,406 @@ export default function MyOrderDetails({ foodItem, options, onClose, onAddToCart
                             </>
                         )}
 
+{foodItem.name === "Java" && (
+                            <>
+                                <div className="contact-info">
+                                    <h3>Contact Information</h3>
+                                    <div className="social-links">
+                                        <a href="tel:+8801812345678" className="contact-link" aria-label="Phone">
+                                            <FaPhone className="contact-icon" /> <span>+880 181-234-5678</span>
+                                        </a>
+                                        <a href="https://facebook.com/craftconnect.cpp" target="_blank" rel="noopener noreferrer" className="contact-link" aria-label="Facebook">
+                                            <FaFacebook className="contact-icon" /> <span>CraftConnect C++</span>
+                                        </a>
+                                        <a href="https://wa.me/8801812345678" target="_blank" rel="noopener noreferrer" className="contact-link" aria-label="WhatsApp">
+                                            <FaWhatsapp className="contact-icon" /> <span>WhatsApp Chat</span>
+                                        </a>
+                                        <a href="https://instagram.com/craftconnect.cpp" target="_blank" rel="noopener noreferrer" className="contact-link" aria-label="Instagram">
+                                            <FaInstagram className="contact-icon" /> <span>@craftconnect.cpp</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div className="video-links">
+                                    <h3>Tutorial Videos</h3>
+                                    <div className="video-grid">
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 1
+                                        </a>
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 2
+                                        </a>
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 3
+                                        </a>
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 4
+                                        </a>
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 5
+                                        </a>
+                                    </div>
+                                </div>
+                            </>
+                        )}
+
+{foodItem.name === "Python" && (
+                            <>
+                                <div className="contact-info">
+                                    <h3>Contact Information</h3>
+                                    <div className="social-links">
+                                        <a href="tel:+8801812345678" className="contact-link" aria-label="Phone">
+                                            <FaPhone className="contact-icon" /> <span>+880 181-234-5678</span>
+                                        </a>
+                                        <a href="https://facebook.com/craftconnect.cpp" target="_blank" rel="noopener noreferrer" className="contact-link" aria-label="Facebook">
+                                            <FaFacebook className="contact-icon" /> <span>CraftConnect C++</span>
+                                        </a>
+                                        <a href="https://wa.me/8801812345678" target="_blank" rel="noopener noreferrer" className="contact-link" aria-label="WhatsApp">
+                                            <FaWhatsapp className="contact-icon" /> <span>WhatsApp Chat</span>
+                                        </a>
+                                        <a href="https://instagram.com/craftconnect.cpp" target="_blank" rel="noopener noreferrer" className="contact-link" aria-label="Instagram">
+                                            <FaInstagram className="contact-icon" /> <span>@craftconnect.cpp</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div className="video-links">
+                                    <h3>Tutorial Videos</h3>
+                                    <div className="video-grid">
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 1
+                                        </a>
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 2
+                                        </a>
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 3
+                                        </a>
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 4
+                                        </a>
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 5
+                                        </a>
+                                    </div>
+                                </div>
+                            </>
+                        )}
+
+{foodItem.name === "Beef Biryani" && (
+                            <>
+                                <div className="contact-info">
+                                    <h3>Contact Information</h3>
+                                    <div className="social-links">
+                                        <a href="tel:+8801812345678" className="contact-link" aria-label="Phone">
+                                            <FaPhone className="contact-icon" /> <span>+880 181-234-5678</span>
+                                        </a>
+                                        <a href="https://facebook.com/craftconnect.cpp" target="_blank" rel="noopener noreferrer" className="contact-link" aria-label="Facebook">
+                                            <FaFacebook className="contact-icon" /> <span>CraftConnect C++</span>
+                                        </a>
+                                        <a href="https://wa.me/8801812345678" target="_blank" rel="noopener noreferrer" className="contact-link" aria-label="WhatsApp">
+                                            <FaWhatsapp className="contact-icon" /> <span>WhatsApp Chat</span>
+                                        </a>
+                                        <a href="https://instagram.com/craftconnect.cpp" target="_blank" rel="noopener noreferrer" className="contact-link" aria-label="Instagram">
+                                            <FaInstagram className="contact-icon" /> <span>@craftconnect.cpp</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div className="video-links">
+                                    <h3>Tutorial Videos</h3>
+                                    <div className="video-grid">
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 1
+                                        </a>
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 2
+                                        </a>
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 3
+                                        </a>
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 4
+                                        </a>
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 5
+                                        </a>
+                                    </div>
+                                </div>
+                            </>
+                        )}
+
+
+{foodItem.name === "Prawn Fried Rice" && (
+                            <>
+                                <div className="contact-info">
+                                    <h3>Contact Information</h3>
+                                    <div className="social-links">
+                                        <a href="tel:+8801812345678" className="contact-link" aria-label="Phone">
+                                            <FaPhone className="contact-icon" /> <span>+880 181-234-5678</span>
+                                        </a>
+                                        <a href="https://facebook.com/craftconnect.cpp" target="_blank" rel="noopener noreferrer" className="contact-link" aria-label="Facebook">
+                                            <FaFacebook className="contact-icon" /> <span>CraftConnect C++</span>
+                                        </a>
+                                        <a href="https://wa.me/8801812345678" target="_blank" rel="noopener noreferrer" className="contact-link" aria-label="WhatsApp">
+                                            <FaWhatsapp className="contact-icon" /> <span>WhatsApp Chat</span>
+                                        </a>
+                                        <a href="https://instagram.com/craftconnect.cpp" target="_blank" rel="noopener noreferrer" className="contact-link" aria-label="Instagram">
+                                            <FaInstagram className="contact-icon" /> <span>@craftconnect.cpp</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div className="video-links">
+                                    <h3>Tutorial Videos</h3>
+                                    <div className="video-grid">
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 1
+                                        </a>
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 2
+                                        </a>
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 3
+                                        </a>
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 4
+                                        </a>
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 5
+                                        </a>
+                                    </div>
+                                </div>
+                            </>
+                        )}
+
+{foodItem.name === "Guitar" && (
+                            <>
+                                <div className="contact-info">
+                                    <h3>Contact Information</h3>
+                                    <div className="social-links">
+                                        <a href="tel:+8801812345678" className="contact-link" aria-label="Phone">
+                                            <FaPhone className="contact-icon" /> <span>+880 181-234-5678</span>
+                                        </a>
+                                        <a href="https://facebook.com/craftconnect.cpp" target="_blank" rel="noopener noreferrer" className="contact-link" aria-label="Facebook">
+                                            <FaFacebook className="contact-icon" /> <span>CraftConnect C++</span>
+                                        </a>
+                                        <a href="https://wa.me/8801812345678" target="_blank" rel="noopener noreferrer" className="contact-link" aria-label="WhatsApp">
+                                            <FaWhatsapp className="contact-icon" /> <span>WhatsApp Chat</span>
+                                        </a>
+                                        <a href="https://instagram.com/craftconnect.cpp" target="_blank" rel="noopener noreferrer" className="contact-link" aria-label="Instagram">
+                                            <FaInstagram className="contact-icon" /> <span>@craftconnect.cpp</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div className="video-links">
+                                    <h3>Tutorial Videos</h3>
+                                    <div className="video-grid">
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 1
+                                        </a>
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 2
+                                        </a>
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 3
+                                        </a>
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 4
+                                        </a>
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 5
+                                        </a>
+                                    </div>
+                                </div>
+                            </>
+                        )}
+
+{foodItem.name === "Flute" && (
+                            <>
+                                <div className="contact-info">
+                                    <h3>Contact Information</h3>
+                                    <div className="social-links">
+                                        <a href="tel:+8801812345678" className="contact-link" aria-label="Phone">
+                                            <FaPhone className="contact-icon" /> <span>+880 181-234-5678</span>
+                                        </a>
+                                        <a href="https://facebook.com/craftconnect.cpp" target="_blank" rel="noopener noreferrer" className="contact-link" aria-label="Facebook">
+                                            <FaFacebook className="contact-icon" /> <span>CraftConnect C++</span>
+                                        </a>
+                                        <a href="https://wa.me/8801812345678" target="_blank" rel="noopener noreferrer" className="contact-link" aria-label="WhatsApp">
+                                            <FaWhatsapp className="contact-icon" /> <span>WhatsApp Chat</span>
+                                        </a>
+                                        <a href="https://instagram.com/craftconnect.cpp" target="_blank" rel="noopener noreferrer" className="contact-link" aria-label="Instagram">
+                                            <FaInstagram className="contact-icon" /> <span>@craftconnect.cpp</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div className="video-links">
+                                    <h3>Tutorial Videos</h3>
+                                    <div className="video-grid">
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 1
+                                        </a>
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 2
+                                        </a>
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 3
+                                        </a>
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 4
+                                        </a>
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 5
+                                        </a>
+                                    </div>
+                                </div>
+                            </>
+                        )}
+
+{foodItem.name === "Piano" && (
+                            <>
+                                <div className="contact-info">
+                                    <h3>Contact Information</h3>
+                                    <div className="social-links">
+                                        <a href="tel:+8801812345678" className="contact-link" aria-label="Phone">
+                                            <FaPhone className="contact-icon" /> <span>+880 181-234-5678</span>
+                                        </a>
+                                        <a href="https://facebook.com/craftconnect.cpp" target="_blank" rel="noopener noreferrer" className="contact-link" aria-label="Facebook">
+                                            <FaFacebook className="contact-icon" /> <span>CraftConnect C++</span>
+                                        </a>
+                                        <a href="https://wa.me/8801812345678" target="_blank" rel="noopener noreferrer" className="contact-link" aria-label="WhatsApp">
+                                            <FaWhatsapp className="contact-icon" /> <span>WhatsApp Chat</span>
+                                        </a>
+                                        <a href="https://instagram.com/craftconnect.cpp" target="_blank" rel="noopener noreferrer" className="contact-link" aria-label="Instagram">
+                                            <FaInstagram className="contact-icon" /> <span>@craftconnect.cpp</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div className="video-links">
+                                    <h3>Tutorial Videos</h3>
+                                    <div className="video-grid">
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 1
+                                        </a>
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 2
+                                        </a>
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 3
+                                        </a>
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 4
+                                        </a>
+                                        <a href="https://drive.google.com/file/d/1pT6ffOcv5MSDaTRA-n2GY9PnY_YMEw_2/view?usp=sharing" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer"
+                                           className="video-link">
+                                            Tutorial 5
+                                        </a>
+                                    </div>
+                                </div>
+                            </>
+                        )}
+
                         <div>
                             <h3>Thanks For Purchasing</h3>
                         </div>

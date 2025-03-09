@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useCart, useDispatchCart } from '../components/ComponentReducer';
 import './Cart.css';
-import { FaTrash, FaShoppingBag, FaCreditCard } from 'react-icons/fa';
+import { FaTrash, FaShoppingBag, FaCreditCard, FaGraduationCap } from 'react-icons/fa';
 
 export default function Cart() {
   let data = useCart();
@@ -12,9 +12,9 @@ export default function Cart() {
     return (
       <div className="cart-empty">
         <div className="empty-cart-content">
-          <FaShoppingBag className="empty-cart-icon" />
-          <h2>Your Cart is Empty!</h2>
-          <p>Add some delicious items to your cart and come back here to checkout.</p>
+          <FaGraduationCap className="empty-cart-icon" />
+          <h2>Your Learning Cart is Empty!</h2>
+          <p>Start your learning journey by adding some courses to your cart.</p>
         </div>
       </div>
     )
@@ -25,7 +25,6 @@ export default function Cart() {
       setLoading(true);
       let userEmail = localStorage.getItem("userEmail");
       
-      // First create the order
       let orderResponse = await fetch("http://localhost:5000/api/orderData", {
         method: 'POST',
         headers: {
@@ -39,19 +38,19 @@ export default function Cart() {
       });
 
       if (orderResponse.status === 200) {
-        // Initialize SSLCommerz payment
         const paymentResponse = await fetch("http://localhost:5000/api/payment/create", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            total_amount: data.reduce((total, food) => total + food.price, 0),
+            total_amount: data.reduce((total, course) => total + course.price, 0),
             cus_email: userEmail,
-            order_items: data.map(item => ({
-              name: item.name,
-              price: item.price,
-              quantity: item.qty
+            order_items: data.map(course => ({
+              name: course.name,
+              price: course.price,
+              quantity: course.qty,
+              type: course.size // Course type (Beginner/Intermediate)
             }))
           })
         });
@@ -59,10 +58,9 @@ export default function Cart() {
         const paymentData = await paymentResponse.json();
         
         if (paymentData.paymentUrl) {
-          // Redirect to SSLCommerz payment gateway
           window.location.href = paymentData.paymentUrl;
         } else {
-          alert("Payment initialization failed!");
+          alert("Payment initialization failed. Please try again.");
         }
       }
     } catch (error) {
@@ -73,35 +71,40 @@ export default function Cart() {
     }
   }
 
-  let totalPrice = data.reduce((total, food) => total + food.price, 0);
+  let totalPrice = data.reduce((total, course) => total + course.price, 0);
 
   return (
     <div className="cart-container">
       <div className="cart-content">
-        <h1 className="cart-title">Shopping Cart</h1>
+        <h1 className="cart-title">
+          <FaGraduationCap className="cart-title-icon" />
+          Your Learning Cart
+        </h1>
         
         <div className="cart-items">
-          {data.map((food, index) => (
-            <div key={index} className="cart-item">
+          {data.map((course, index) => (
+            <div key={index} className={`cart-item ${course.size.toLowerCase()}-course`}>
               <div className="item-image">
-                <img src={food.img} alt={food.name} />
+                <img src={course.img} alt={course.name} />
+                <span className="course-type-badge">{course.size}</span>
               </div>
               <div className="item-details">
-                <h3 className="item-name">{food.name}</h3>
+                <h3 className="item-name">{course.name}</h3>
                 <div className="item-meta">
-                  <span className="item-size">Course Type: {food.size}</span>
-                  <span className="item-quantity">Sessions: {food.qty}</span>
+                  <span className="item-level">
+                    Level: {course.size}
+                    {course.size === 'Beginner' ? ' (₹499)' : ' (₹799)'}
+                  </span>
+                  <span className="item-sessions">Sessions: {course.qty}</span>
                 </div>
               </div>
               <div className="item-price">
-                ₹{food.price}/-
+                ₹{course.price}/-
               </div>
               <button 
                 className="remove-item-btn"
-                onClick={() => { 
-                  dispatch({ type: "REMOVE", index: index });
-                }}
-                aria-label="Remove item"
+                onClick={() => { dispatch({ type: "REMOVE", index: index }); }}
+                aria-label="Remove course"
               >
                 <FaTrash />
               </button>
@@ -111,15 +114,15 @@ export default function Cart() {
 
         <div className="cart-summary">
           <div className="summary-row">
-            <span>Subtotal:</span>
+            <span>Course Total:</span>
             <span>₹{totalPrice}/-</span>
           </div>
           <div className="summary-row">
-            <span>Delivery Fee:</span>
+            <span>Platform Fee:</span>
             <span>₹0/-</span>
           </div>
           <div className="summary-row total">
-            <span>Total:</span>
+            <span>Total Amount:</span>
             <span>₹{totalPrice}/-</span>
           </div>
           
@@ -134,7 +137,7 @@ export default function Cart() {
           
           <div className="payment-info">
             <p>Secure payment powered by SSLCommerz</p>
-            <p>Your order details will be sent to {localStorage.getItem("userEmail")}</p>
+            <p>Course access details will be sent to {localStorage.getItem("userEmail")}</p>
           </div>
         </div>
       </div>

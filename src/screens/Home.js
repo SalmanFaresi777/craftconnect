@@ -5,6 +5,7 @@ import Card from '../components/Card'
 import MyOrder from './MyOrder';
 import Carausel from '../components/Carausel'
 import { FaFilter, FaSearch } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Home.css';
 
@@ -134,41 +135,50 @@ export default function Home() {
           <div className="carousel-inner" id='carousel'>
             <div className="carousel-caption" style={{ zIndex: "10" }}>
               <div className="search-filter-container">
-                <div className="search-box">
-                  <FaSearch className="search-icon" />
-                  <input 
-                    className="form-control search-input" 
-                    type="search" 
-                    placeholder="Search" 
-                    value={search} 
-                    onChange={(e) => setSearch(e.target.value)} 
-                  />
-                </div>
-                <div className="category-filter">
-                  <FaFilter className="filter-icon" />
-                  <select 
-                    className="form-select category-select" 
-                    value={selectedCategory}
-                    onChange={(e) => setSelectedCategory(e.target.value)}
+                <h1 className="search-title">Discover Amazing Skills</h1>
+                <p className="search-subtitle">Find the perfect course to enhance your abilities</p>
+                <div className="d-flex flex-column align-items-center">
+                  <div className="search-box mb-3">
+                    <input 
+                      className="form-control search-input" 
+                      type="search" 
+                      placeholder="What would you like to learn today?" 
+                      value={search} 
+                      onChange={(e) => setSearch(e.target.value)} 
+                    />
+                  </div>
+                  <div className="category-filter mb-3">
+                    <FaFilter className="filter-icon" />
+                    <select 
+                      className="form-select category-select" 
+                      value={selectedCategory}
+                      onChange={(e) => setSelectedCategory(e.target.value)}
+                    >
+                      <option value="all">All Categories</option>
+                      {foodCat.map(category => (
+                        <option key={category._id} value={category.CategoryName}>
+                          {category.CategoryName}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <Link 
+                    to="/seller-signup" 
+                    className="seller-link"
                   >
-                    <option value="all">All Categories</option>
-                    {foodCat.map(category => (
-                      <option key={category._id} value={category.CategoryName}>
-                        {category.CategoryName}
-                      </option>
-                    ))}
-                  </select>
+                    Want to share your skill? Click Here!
+                  </Link>
                 </div>
               </div>
             </div>
             <div className="carousel-item active">
-              <img src="/learn_7.jpg" className="d-block w-100" style={{ filter: "brightness(30%)" }} alt="Local iStock Image" />
+              <img src="/learn_7.jpg" className="carousel-img d-block w-100" alt="Local iStock Image" />
             </div>
             <div className="carousel-item">
-              <img src="/learn_5.jpg" className="d-block w-100" style={{ filter: "brightness(30%)" }} alt="Local iStock Image" />
+              <img src="/learn_5.jpg" className="carousel-img d-block w-100" alt="Local iStock Image" />
             </div>
             <div className="carousel-item">
-              <img src="/learn_3.jpg" className="d-block w-100" style={{ filter: "brightness(30%)" }} alt="Local iStock Image" />
+              <img src="/learn_3.jpg" className="carousel-img d-block w-100" alt="Local iStock Image" />
             </div>
           </div>
           <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">

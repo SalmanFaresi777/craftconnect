@@ -4,95 +4,200 @@
   background-color: #f8f9fa;
 }
 
+.carousel-inner {
+  position: relative;
+  overflow: hidden;
+  height: 80vh;
+}
+
+.carousel-img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  filter: brightness(40%) saturate(110%);
+  transform: scale(1);
+  transition: transform 6s ease-in-out;
+}
+
+.carousel-item {
+  height: 100%;
+}
+
+.carousel-item.active .carousel-img {
+  animation: subtle-zoom 15s ease-in-out infinite;
+}
+
+@keyframes subtle-zoom {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .search-filter-container {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    backdrop-filter: blur(5px);
-    max-width: 800px;
-    margin: 0 auto;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 3rem;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.search-title {
+  color: #fff;
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.5px;
+}
+
+.search-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+  letter-spacing: 0.3px;
 }
 
 .search-box {
-    position: relative;
-    flex: 2;
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  transition: transform 0.3s ease;
+}
+
+.search-box:hover {
+  transform: translateY(-2px);
 }
 
 .search-icon {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #6c757d;
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #007bff;
+  font-size: 1.2rem;
+  z-index: 2;
 }
 
 .search-input {
-    padding-left: 2.5rem !important;
-    border-radius: 25px !important;
-    border: none !important;
-    background: rgba(255, 255, 255, 0.9) !important;
-    transition: all 0.3s ease;
+  height: 50px;
+  padding: 10px 20px 10px 50px;
+  border-radius: 25px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  width: 100%;
+  color: #333;
 }
 
 .search-input:focus {
-    background: white !important;
-    box-shadow: 0 0 0 2px #ffc107 !important;
+  border-color: #007bff;
+  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.25);
+  background: #fff;
+}
+
+.search-input::placeholder {
+  color: #888;
+  font-size: 1rem;
 }
 
 .category-filter {
-    position: relative;
-    flex: 1;
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  transition: transform 0.3s ease;
+}
+
+.category-filter:hover {
+  transform: translateY(-2px);
 }
 
 .filter-icon {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #6c757d;
-    z-index: 1;
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #007bff;
+  font-size: 1.2rem;
+  z-index: 2;
 }
 
 .category-select {
-    padding-left: 2.5rem !important;
-    border-radius: 25px !important;
-    border: none !important;
-    background: rgba(255, 255, 255, 0.9) !important;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    color: #808080;
+  height: 50px;
+  width: 100%;
+  padding: 10px 20px 10px 50px;
+  border-radius: 25px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  color: #333;
+  appearance: none;
 }
 
 .category-select:focus {
-    border-color: #ffc107 !important;
-    box-shadow: 0 0 0 2px #ffc107 !important;
+  border-color: #007bff;
+  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.25);
+  background: #fff;
 }
 
-.category-select option {
-    color: #808080;
-    background-color: white;
+.seller-link {
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 12px 30px;
+  border-radius: 25px;
+  background: linear-gradient(45deg, #007bff, #00bfff);
+  transition: all 0.3s ease;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 1.1rem;
+}
+
+.seller-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+  background: linear-gradient(45deg, #0056b3, #0098cc);
+  color: #fff;
 }
 
 .no-results {
-    text-align: center;
-    padding: 3rem;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin: 2rem 0;
+  text-align: center;
+  padding: 3rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  margin: 2rem 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .no-results h3 {
-    color: #6c757d;
-    margin-bottom: 1rem;
+  color: #333;
+  margin-bottom: 1rem;
+  font-weight: 600;
 }
 
 .no-results p {
-    color: #adb5bd;
+  color: #666;
+  font-size: 1.1rem;
 }
 
 .category-container {
@@ -132,19 +237,47 @@
   }
 }
 
-/* Responsive Design */
+/* Responsive styles */
 @media (max-width: 768px) {
-    .search-filter-container {
-        flex-direction: column;
-        padding: 1rem;
-    }
+  .search-filter-container {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
 
-    .search-box,
-    .category-filter {
-        width: 100%;
-    }
+  .search-title {
+    font-size: 2rem;
+  }
 
-    .category-select {
-        width: 100%;
-    }
+  .search-subtitle {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .search-box,
+  .category-filter {
+    max-width: 100%;
+  }
+
+  .seller-link {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+
+  .search-input,
+  .category-select {
+    height: 45px;
+    font-size: 1rem;
+  }
+}
+
+/* Animation for search container appearance */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
